@@ -1,36 +1,47 @@
 import { makeAutoObservable } from 'mobx';
-import axios from 'axios';
-import { mainCurrency } from '../utils';
+import { getRates, mainCurrency } from '../utils';
+import { ParticularCurrencyRates } from '../models/CurrencyRates';
 
 class CurrencyStore {
-    currencies = {};
-    isLoading = true;
+    currencies: ParticularCurrencyRates;
+    isLoading: boolean;
+    searchTerm: string;
 
     constructor() {
         makeAutoObservable(this);
+        this.currencies = {};
+        this.isLoading = false;
+        this.searchTerm = '';
     }
 
-    fetchCurrencies() {
-        this.isLoading = true;
-        axios.get('https://app.youhodler.com/api/v3/rates/extended')
-            .then((response) => {
-                if (response?.data?.[mainCurrency]) {
-                    this.currencies = response.data[mainCurrency];
-                    this.isLoading = false;
-                }
-            })
-            .catch(e => {
-                console.log(e);
-                this.isLoading = false;
-            });
-    }
-
-    getCurrencies() {
+    async fetchCurrencies(): Promise<void> {
         if (Object.keys(this.currencies).length === 0 && !this.isLoading) {
-            this.fetchCurrencies();
+            this.isLoading = true;
+            try {
+                const response = await getRates();
+                this.currencies = response.data[mainCurrency];
+            } catch (e) {
+                console.error(e);
+            } finally {
+                this.isLoading = false;
+            }
         }
-        return this.currencies;
     }
+
+    setSearchTerm(term: string): void {
+        this.searchTerm = term;
+    }
+
+    get filteredCurrencies(): ParticularCurrencyRates {
+        const lowerCaseTerm = this.searchTerm.toLowerCase();
+        return Object.entries(this.currencies)
+            .reduce((acc, [key, value]) =>
+                key.includes(lowerCaseTerm)
+                    ? ({ ...acc, [key]: value })
+                    : acc,
+            {});
+    }
+
 }
 
 export const currencyStore = new CurrencyStore();
