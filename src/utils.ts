@@ -6,3 +6,5 @@ export const mainCurrency = 'usd';
 export const getRates = (): Promise<AxiosResponse<CurrencyRatesResponse>> => {
     return axios.get('https://app.youhodler.com/api/v3/rates/extended');
 };
+
+export const isObjectEmpty = obj => Object.keys(obj).length === 0;

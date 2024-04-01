@@ -6,22 +6,25 @@ class CurrencyStore {
     currencies: ParticularCurrencyRates;
     isLoading: boolean;
     searchTerm: string;
+    error: string | null;
 
     constructor() {
         makeAutoObservable(this);
         this.currencies = {};
         this.isLoading = false;
         this.searchTerm = '';
+        this.error = null;
     }
 
     async fetchCurrencies(): Promise<void> {
         if (Object.keys(this.currencies).length === 0 && !this.isLoading) {
             this.isLoading = true;
+            this.error = null;
             try {
                 const response = await getRates();
                 this.currencies = response.data[mainCurrency];
             } catch (e) {
-                console.error(e);
+                this.error = e instanceof Error ? e.message : 'An unexpected error occurred';
             } finally {
                 this.isLoading = false;
             }

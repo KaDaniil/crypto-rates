@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import SearchBar from '../components/SearchBar';
+import { isObjectEmpty } from '../utils';
 
 const LinkItem = styled(Link)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,11 +30,18 @@ const LinkItem = styled(Link)(({ theme }) => ({
         boxShadow: theme.shadows[6],
     },
 
-
     '& .MuiTypography-root': {
         fontWeight: 500,
     },
 }));
+
+const CenteringWrapper = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '50vh',
+}));
+
 
 
 const Home = observer(() => {
@@ -48,8 +56,29 @@ const Home = observer(() => {
         currencyStore.setSearchTerm(event.target.value);
     };
 
+    if (currencyStore.error) {
+        return (
+            <CenteringWrapper>
+                <Typography color="error">{currencyStore.error}</Typography>
+            </CenteringWrapper>
+        );
+    }
+
     if (currencyStore.isLoading) {
-         return <p>Loading...</p>;
+        return (
+            <CenteringWrapper>
+                {/*<Typography>Loading...</Typography>*/}
+                <span className="loader" />
+            </CenteringWrapper>
+        );
+    }
+
+    if (isObjectEmpty(currencyStore.currencies)) {
+        return (
+            <CenteringWrapper>
+                <Typography>No data</Typography>
+            </CenteringWrapper>
+        );
     }
 
     const currencies = currencyStore.searchTerm
