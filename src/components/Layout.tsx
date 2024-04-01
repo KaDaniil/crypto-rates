@@ -10,7 +10,7 @@ const Layout = () => {
             <Header/>
             <Box sx={{
                 px: {xs: 6, sm: 8, md: 10},
-                py: {xs: 5, md: 10},
+                py: {xs: 5, md: 8},
             }}>
                 <Outlet/>
             </Box>
