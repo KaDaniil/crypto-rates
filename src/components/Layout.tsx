@@ -9,6 +9,7 @@ const Layout = () => {
         <Box>
             <Header/>
             <Box sx={{
+                backgroundColor: 'background.default',
                 px: {xs: 6, sm: 8, md: 10},
                 py: {xs: 5, md: 8},
             }}>

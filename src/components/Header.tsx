@@ -1,18 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
+import { AppBar, Toolbar, IconButton, Switch, Typography, Box } from '@mui/material';
+import { useTheme } from '../theme/ThemeContext';
+import logoLight from '../assets/logo.svg';
+import logoDark from '../assets/logo-dark.svg';
 
 const Header = () => {
     const navigate = useNavigate();
+    const  { theme, toggleTheme }  = useTheme();
+    const logo = theme.palette.mode === 'dark' ? logoDark : logoLight;
 
     return (
-        <AppBar position="static" sx={{
-            backgroundColor: 'white',
-            boxShadow: 'none',
-        }}>
-            <Toolbar>
+        <AppBar position="static" >
+            <Toolbar sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                backgroundColor: 'background.default'
+            }}>
                 <IconButton
                     edge="start"
                     color="inherit"
@@ -30,8 +34,12 @@ const Header = () => {
                         }
                     }}
                 >
-                    <img src="logo.svg" alt="logo"/>
+                    <img src={logo} alt="logo"/>
                 </IconButton>
+                <Box display="flex" sx={{ alignItems: 'center', gap: 2 }}>
+                    <Typography variant="body1">Theme Switcher:</Typography>
+                    <Switch onChange={toggleTheme} />
+                </Box>
             </Toolbar>
         </AppBar>
     );
