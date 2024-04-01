@@ -16,6 +16,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'quotes': ['error', 'single', { 'avoidEscape': true }],
-    'semi': [2, 'always']
+    'semi': [2, 'always'],
+    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
   },
 }
