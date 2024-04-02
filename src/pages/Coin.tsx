@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import FakeChart from '../components/FakeChart';
 import { CoinProps } from '../models/CurrencyRates';
 import { useEffect } from 'react';
+import Loader from '../components/Loader';
 
 const labelMap = {
     rate: 'Current Rate',
@@ -27,7 +28,7 @@ const Coin = observer(() => {
         return <Typography>Sorry, we don't have the <b>{coinId.toUpperCase()}</b> coin.</Typography>;
     }
     if (!coin) {
-        return <Typography>Loading...</Typography>;
+        return <Loader />;
     }
 
     return (
@@ -57,7 +58,7 @@ const Coin = observer(() => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         py: 2,
-                        px: {xs: 2, sm: 8, md: 10},
+                        px: { xs: 2, sm: 8, md: 10 },
                         gap: 1,
                         flexDirection: { xs: 'column', sm: 'row' },
                     }}>

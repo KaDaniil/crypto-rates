@@ -1,7 +1,7 @@
 import React from 'react';
-import {Outlet} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Header from './Header';
-import {Box} from '@mui/material';
+import { Box } from '@mui/material';
 
 
 const Layout = () => {
@@ -10,8 +10,8 @@ const Layout = () => {
             <Header/>
             <Box sx={{
                 backgroundColor: 'background.default',
-                px: {xs: 6, sm: 8, md: 10},
-                py: {xs: 5, md: 8},
+                px: { xs: 6, sm: 8, md: 10 },
+                py: { xs: 5, md: 8 },
             }}>
                 <Outlet/>
             </Box>

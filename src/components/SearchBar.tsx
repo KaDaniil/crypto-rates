@@ -11,13 +11,12 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
 
     return (
         <TextField
-            id="search-bar"
             label="Search for a currency"
             variant="outlined"
             onChange={onChange}
             fullWidth
             sx={{
-                backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                backgroundColor: theme.palette.background.paper,
                 margin: theme.spacing(1),
                 borderRadius: theme.shape.borderRadius,
                 boxShadow: theme.shadows[3],

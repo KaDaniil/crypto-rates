@@ -1,7 +1,10 @@
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Coin from './pages/Coin';
+import Loader from './components/Loader';
+
+const Home = lazy(() => import('./pages/Home'));
+const Coin = lazy(() => import('./pages/Coin'));
 
 const router = createBrowserRouter([
     {
@@ -11,13 +14,21 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 index: true,
-                element: <Home/>,
-                errorElement: 'error :/',
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Home />
+                    </Suspense>
+                ),
+                errorElement: <div>Error :/</div>,
             },
             {
                 path: ':coinId',
-                element: <Coin/>,
-                errorElement: 'error :///',
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Coin />
+                    </Suspense>
+                ),
+                errorElement: <div>Error :/</div>,
             }
         ],
     },
