@@ -2,13 +2,16 @@
   "name": "crypto-rates",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://kadaniil.github.io/crypto-rates",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "predeploy": "yarn run build",
+    "deploy": "yarn gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -43,6 +46,7 @@
     "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "gh-pages": "^6.1.1",
     "jest": "^29.7.0",
     "msw": "^2.2.13",
     "ts-jest": "^29.1.2",
