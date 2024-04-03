@@ -16,23 +16,29 @@ class CurrencyStore {
         this.error = null;
     }
 
+    setSearchTerm(term: string): void {
+        this.searchTerm = term;
+    }
+    setCurrencies(currencies: ParticularCurrencyRates): void {
+        this.currencies = currencies;
+    }
+    setIsLoading(isLoading: boolean): void {
+        this.isLoading = isLoading;
+    }
+
     async fetchCurrencies(): Promise<void> {
         if (isObjectEmpty(this.currencies) && !this.isLoading) {
             this.isLoading = true;
             this.error = null;
             try {
                 const response = await getRates();
-                this.currencies = response.data[mainCurrency];
+                this.setCurrencies(response.data[mainCurrency]);
             } catch (e) {
                 this.error = e instanceof Error ? e.message : 'An unexpected error occurred';
             } finally {
-                this.isLoading = false;
+                this.setIsLoading(false);
             }
         }
-    }
-
-    setSearchTerm(term: string): void {
-        this.searchTerm = term;
     }
 
     get filteredCurrencies(): ParticularCurrencyRates {

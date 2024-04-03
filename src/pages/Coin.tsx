@@ -8,7 +8,7 @@ import FakeChart from '../components/FakeChart';
 import { CoinProps } from '../models/CurrencyRates';
 import { useEffect } from 'react';
 import Loader from '../components/Loader';
-import CoinDetailedCard from '../components/CoinDetailedCard';
+import CoinRow from '../components/CoinRow';
 
 
 const Coin = observer(() => {
@@ -47,8 +47,8 @@ const Coin = observer(() => {
                 <Typography variant="h4" component="h1" sx={{ textAlign: 'center', mb: 3, fontWeight: 500 }}>
                     {coinId.toUpperCase()} Details
                 </Typography>
-                {Object.entries(coin).map(([coinKey, coinValue]) => (
-                    <CoinDetailedCard coinKey={coinKey} coinValue={coinValue}/>
+                {Object.entries(coin as  Record<string, number> ).map(([rowKey, rowValue]) => (
+                    <CoinRow key={rowKey} rowKey={rowKey} rowValue={rowValue}/>
                 ))}
                 <FakeChart />
             </Paper>

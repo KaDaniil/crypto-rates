@@ -10,9 +10,9 @@ const labelMap = {
     diff24h: '24h Difference',
 };
 
-const CoinDetailedCard = memo(({ coinKey, coinValue }) => {
+const CoinRow = memo(({ rowKey, rowValue }) => {
     return (
-        <Box key={coinKey} sx={{
+        <Box key={rowKey} sx={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -22,13 +22,13 @@ const CoinDetailedCard = memo(({ coinKey, coinValue }) => {
             flexDirection: { xs: 'column', sm: 'row' },
         }}>
             <Typography variant="h5" sx={{ width: '100%', textAlign: { xs: 'center', sm: 'left' }, fontWeight: 500 }}>
-                {labelMap[coinKey] || coinKey}:
+                {labelMap[rowKey] || rowKey}:
             </Typography>
             <Typography variant="h5" sx={{ width: '100%', textAlign: { xs: 'center', sm: 'right' } }}>
-                {coinValue}
+                {rowValue}
             </Typography>
         </Box>
     );
 });
 
-export default CoinDetailedCard;
+export default CoinRow;

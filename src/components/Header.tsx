@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Switch, Typography, Box } from '@mui/material';
-import { useTheme } from '../theme/ThemeContext';
+import { useTheme } from '@mui/material/styles';
 import logoLight from '../assets/logo.svg';
 import logoDark from '../assets/logo-dark.svg';
+import { ColorModeContext } from '../contexts/ColorModeContext';
 
 const Header = () => {
     const navigate = useNavigate();
-    const  { theme, toggleTheme }  = useTheme();
+    const  theme  = useTheme();
+    const themeContext = useContext(ColorModeContext);
+
     const logo = theme.palette.mode === 'dark' ? logoDark : logoLight;
 
     return (
@@ -38,7 +41,7 @@ const Header = () => {
                 </IconButton>
                 <Box display="flex" sx={{ alignItems: 'center', gap: 2 }}>
                     <Typography variant="body1">Theme Switcher:</Typography>
-                    <Switch onChange={toggleTheme} />
+                    <Switch onChange={themeContext.toggleColorMode} />
                 </Box>
             </Toolbar>
         </AppBar>
