@@ -19,8 +19,7 @@ Follow these steps to get a copy of the project up and running on your local mac
 
 Ensure you have the following installed:
 - Node.js (https://nodejs.org/)
-- npm (https://www.npmjs.com/get-npm) 
-  - or if you use yarn (https://yarnpkg.com/getting-started/install)
+- Yarn (https://yarnpkg.com/getting-started/install)
 
 ### Installation
 
@@ -31,12 +30,12 @@ Ensure you have the following installed:
 2. Navigate to the project directory:
    ```sh
    cd crypto-rates
-3. Install NPM packages:
+3. Install packages:
    ```sh
-   npm install
+   yarn
 4. Start the development server:
    ```sh
-   npm start
+   yarn dev
    
 The app should now be running on http://localhost:5173.
 
