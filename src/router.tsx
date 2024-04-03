@@ -1,12 +1,13 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import Layout from './components/Layout';
 import Loader from './components/Loader';
 
 const Home = lazy(() => import('./pages/Home'));
 const Coin = lazy(() => import('./pages/Coin'));
 
-const router = createBrowserRouter([
+// gh-pages doesn't allow to work with the BrowserRouter.
+const router = createHashRouter([
     {
         path: '/',
         element: <Layout />,

@@ -11,10 +11,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'jest'],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
     'quotes': ['error', 'single', { 'avoidEscape': true }],
     'semi': [2, 'always'],
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],

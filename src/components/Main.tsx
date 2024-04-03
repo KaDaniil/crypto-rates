@@ -24,7 +24,7 @@ const Main = () => {
     return (
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
-                <RouterProvider router={router}/>
+                <RouterProvider router={router} />
             </ThemeProvider>
         </ColorModeContext.Provider>
     );
