@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { getRates, mainCurrency } from '../utils';
+import { getRates, mainCurrency, isObjectEmpty } from '../utils';
 import { ParticularCurrencyRates } from '../models/CurrencyRates';
 
 class CurrencyStore {
@@ -17,7 +17,7 @@ class CurrencyStore {
     }
 
     async fetchCurrencies(): Promise<void> {
-        if (Object.keys(this.currencies).length === 0 && !this.isLoading) {
+        if (isObjectEmpty(this.currencies) && !this.isLoading) {
             this.isLoading = true;
             this.error = null;
             try {
