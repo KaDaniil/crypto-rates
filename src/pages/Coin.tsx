@@ -9,6 +9,7 @@ import { CoinProps } from '../models/CurrencyRates';
 import { useEffect } from 'react';
 import Loader from '../components/Loader';
 import CoinRow from '../components/CoinRow';
+import { coinLabelMap } from '../utils';
 
 
 const Coin = observer(() => {
@@ -17,7 +18,11 @@ const Coin = observer(() => {
     }, []);
 
     const { coinId } = useParams();
-    const coin: CoinProps | undefined = currencyStore.currencies[coinId];
+    if (!coinId) {
+        return <Typography>Sorry, we haven't received the coinId parameter</Typography>;
+    }
+
+    const coin: CoinProps = currencyStore.currencies[coinId];
 
     if (!coin && !currencyStore.isLoading) {
         return <Typography>Sorry, we don't have the <b>{coinId.toUpperCase()}</b> coin.</Typography>;
@@ -47,8 +52,8 @@ const Coin = observer(() => {
                 <Typography variant="h4" component="h1" sx={{ textAlign: 'center', mb: 3, fontWeight: 500 }}>
                     {coinId.toUpperCase()} Details
                 </Typography>
-                {Object.entries(coin as  Record<string, number> ).map(([rowKey, rowValue]) => (
-                    <CoinRow key={rowKey} rowKey={rowKey} rowValue={rowValue}/>
+                {Object.entries(coin).map(([rowKey, rowValue]) => (
+                    <CoinRow key={rowKey} rowKey={rowKey as keyof typeof coinLabelMap} rowValue={rowValue}/>
                 ))}
                 <FakeChart />
             </Paper>

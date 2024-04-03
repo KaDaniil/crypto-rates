@@ -1,4 +1,3 @@
-import React from 'react';
 import CenteringWrapper from './CenteringWrapper';
 
 const Loader = () => (

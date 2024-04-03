@@ -1,16 +1,16 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { memo } from 'react';
+import { coinLabelMap } from '../utils/index';
 
 
-const labelMap = {
-    rate: 'Current Rate',
-    ask: 'Asking Price',
-    bid: 'Bidding Price',
-    diff24h: '24h Difference',
-};
+interface CoinRowProps {
+    rowKey: keyof typeof coinLabelMap;
+    rowValue: number;
+}
 
-const CoinRow = memo(({ rowKey, rowValue }) => {
+const CoinRow = memo(({ rowKey, rowValue }: CoinRowProps) => {
+    const label = coinLabelMap[rowKey] ?? rowKey;
     return (
         <Box key={rowKey} sx={{
             display: 'flex',
@@ -22,7 +22,7 @@ const CoinRow = memo(({ rowKey, rowValue }) => {
             flexDirection: { xs: 'column', sm: 'row' },
         }}>
             <Typography variant="h5" sx={{ width: '100%', textAlign: { xs: 'center', sm: 'left' }, fontWeight: 500 }}>
-                {labelMap[rowKey] || rowKey}:
+                {label}:
             </Typography>
             <Typography variant="h5" sx={{ width: '100%', textAlign: { xs: 'center', sm: 'right' } }}>
                 {rowValue}

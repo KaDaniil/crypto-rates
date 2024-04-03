@@ -1,6 +1,6 @@
 import { currencyStore } from './CurrencyStore';
 import { server } from '../mocks/server';
-import { getRates, mainCurrency } from '../utils';
+import { getRates, mainCurrency } from '../utils/index';
 
 jest.mock('../utils', () => ({
     mainCurrency: 'USD',

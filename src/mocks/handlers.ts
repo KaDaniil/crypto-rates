@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { mainCurrency } from '../utils';
+import { mainCurrency } from '../utils/index';
 
 export const handlers = [
     http.get('https://app.youhodler.com/api/v3/rates/extended', () => {

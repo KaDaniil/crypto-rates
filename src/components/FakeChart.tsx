@@ -1,3 +1,4 @@
+// A hardcoded chart which might be used properly with history data.
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Typography from '@mui/material/Typography';
@@ -18,7 +19,7 @@ const chartOptions = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top',
+            position: 'top' as const,
         },
         title: {
             display: true,
@@ -33,7 +34,7 @@ const FakeChart = () => {
             <Typography variant="h5" component="h2" sx={{ textAlign: 'center', mt: 8 }}>
                 Fake Rate History (Mocked)
             </Typography>
-            <Line data={chartData} options={chartOptions}  type="line"/>
+            <Line data={chartData} options={chartOptions} />
         </>
     );
 };

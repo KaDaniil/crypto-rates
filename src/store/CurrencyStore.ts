@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { getRates, mainCurrency, isObjectEmpty } from '../utils';
+import { getRates, mainCurrency, isObjectEmpty } from '../utils/index';
 import { ParticularCurrencyRates } from '../models/CurrencyRates';
 
 class CurrencyStore {
