@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { isObjectEmpty } from '../utils/index';
+import { isObjectEmpty } from '../utils';
 import { currencyStore } from '../store/CurrencyStore';
 import SearchBar from '../components/SearchBar';
 import LinkItem from '../components/LinkItem';
@@ -17,7 +17,6 @@ const Home = observer(() => {
     }, []);
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // TODO: Add debounce?
         currencyStore.setSearchTerm(event.target.value);
     };
 

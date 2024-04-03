@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { memo } from 'react';
-import { coinLabelMap } from '../utils/index';
+import { coinLabelMap } from '../utils';
 
 
 interface CoinRowProps {
